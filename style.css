@@ -92,7 +92,7 @@ body::before {
 
 h1 {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 50px;
+    font-size: 60px;
     padding-bottom: 3rem;
 }
 
@@ -126,8 +126,10 @@ button:disabled {
     }
 
     .container__imagem-pessoa {
-        width: 80%; /* Ajuste conforme necessário */
-        height: auto;   
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
     }
 
     .container__conteudo {
