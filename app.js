@@ -1,52 +1,52 @@
-let listaDeNumerosSorteados = [];
-let numeroLimite = 50;
-let numeroSecreto = gerarNumeroAleatorio();
-let tentativas = 1;
+let listaDeNumerosSorteados = [];// Armazena os números já sorteados para evitar repetições
+let numeroLimite = 1000;// Limite superior do número secreto
+let numeroSecreto = gerarNumeroAleatorio();// Gera um número secreto aleatório
+let tentativas = 1;// Contador de tentativas
 
 function exibirTextoNaTela(tag, texto) {
-    let campo = document.querySelector(tag);
-    campo.innerHTML = texto;
-    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
+    let campo = document.querySelector(tag);// Seleciona um elemento HTML pela tag
+    campo.innerHTML = texto;// Insere o texto no elemento
+    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});// Fala o texto (API de voz)
 }
 
 function exibirMensagemInicial() {
-    exibirTextoNaTela('h1', 'Jogo do número secreto');
-    exibirTextoNaTela('p', 'Escolha um número entre 1 e 1000');
+    exibirTextoNaTela('h1', 'Jogo do número secreto');// Define o título
+    exibirTextoNaTela('p', 'Escolha um número entre 1 e 1000');// Define a instrução inicial
 }
 
-exibirMensagemInicial();
+exibirMensagemInicial();//Assim que a página carrega, a função é chamada e mostra as mensagens iniciais
 
 function verificarChute() {
-    let chute = document.querySelector('input').value;
+    let chute = document.querySelector('input').value;// Obtém o número digitado pelo usuário
     
-    if (chute == numeroSecreto) {
-        exibirTextoNaTela('h1', 'Acertou!');
-        let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
+    if (chute == numeroSecreto) {// Se o número estiver correto:
+        exibirTextoNaTela('h1', 'Acertou!');// Exibe a mensagem de acerto
+        let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';// Plural ou singular
         let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}!`;
         exibirTextoNaTela('p', mensagemTentativas);
-        document.getElementById('reiniciar').removeAttribute('disabled');
+        document.getElementById('reiniciar').removeAttribute('disabled');// Habilita o botão "Reiniciar"
     } else {
-        if (chute > numeroSecreto) {
-            exibirTextoNaTela('p', 'O número secreto é menor');
+        if (chute > numeroSecreto) {// Se errar:
+            exibirTextoNaTela('p', 'O número secreto é menor');// Dica: o número é menor
         } else {
-            exibirTextoNaTela('p', 'O número secreto é maior');
+            exibirTextoNaTela('p', 'O número secreto é maior');// Dica: o número é maior
         }
-        tentativas++;
-        limparCampo();
+        tentativas++;// Aumenta o número de tentativas
+        limparCampo();// Limpa o campo de entrada
     }
 }
 
 function gerarNumeroAleatorio() {
-    let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);
+    let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);// Gera um número aleatório entre 1 e 1000
     let quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
 
     if (quantidadeDeElementosNaLista == numeroLimite) {
-        listaDeNumerosSorteados = [];
+        listaDeNumerosSorteados = [];// Se todos os números já foram sorteados, a lista é reiniciada
     }
     if (listaDeNumerosSorteados.includes(numeroEscolhido)) {
-        return gerarNumeroAleatorio();
+        return gerarNumeroAleatorio();// Se o número já foi sorteado, gera outro
     } else {
-        listaDeNumerosSorteados.push(numeroEscolhido);
+        listaDeNumerosSorteados.push(numeroEscolhido);// Adiciona o número na lista de sorteados
         console.log(listaDeNumerosSorteados)
         return numeroEscolhido;
     }
@@ -54,15 +54,15 @@ function gerarNumeroAleatorio() {
 
 function limparCampo() {
     chute = document.querySelector('input');
-    chute.value = '';
+    chute.value = '';// Limpa o campo de entrada
 }
 
 function reiniciarJogo() {
-    numeroSecreto = gerarNumeroAleatorio();
-    limparCampo();
-    tentativas = 1;
-    exibirMensagemInicial();
-    document.getElementById('reiniciar').setAttribute('disabled', true)
+    numeroSecreto = gerarNumeroAleatorio();// Gera um novo número secreto
+    limparCampo();// Limpa o campo de entrada
+    tentativas = 1;// Reseta o número de tentativas
+    exibirMensagemInicial();// Reexibe a mensagem inicial
+    document.getElementById('reiniciar').setAttribute('disabled', true)// Desabilita o botão "Reiniciar"
 }
 
 

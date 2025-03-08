@@ -126,7 +126,8 @@ button:disabled {
     }
 
     .container__imagem-pessoa {
-        display: none;
+        width: 80%; /* Ajuste conforme necessário */
+        height: auto;   
     }
 
     .container__conteudo {
