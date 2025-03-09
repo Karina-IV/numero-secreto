@@ -27,8 +27,8 @@ body::before {
 }
 
 .container {
-    width: 80%;
-    height: 80%;
+    width: 95%;
+    height: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -92,7 +92,7 @@ body::before {
 
 h1 {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 60px;
+    font-size: 72px;
     padding-bottom: 3rem;
 }
 
@@ -110,10 +110,10 @@ button:disabled {
     background-color: gray;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1250px) {
 
     h1 {
-        font-size: 60px;
+        font-size: 50px;
     }
 
     .container__botao {
@@ -126,10 +126,7 @@ button:disabled {
     }
 
     .container__imagem-pessoa {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
+        display: none;
     }
 
     .container__conteudo {
